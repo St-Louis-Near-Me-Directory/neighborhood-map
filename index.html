@@ -823,8 +823,8 @@
               <tr>
                 <th data-col="name">Neighborhood</th>
                 <th data-col="population" class="sorted">Pop <span class="sort-arrow">↓</span></th>
-                <th data-col="density">Density<br><span style="font-weight:400;text-transform:none;letter-spacing:0">/mi²</span></th>
-                <th data-col="area_sqmi">Area<br><span style="font-weight:400;text-transform:none;letter-spacing:0">mi²</span></th>
+                <th data-col="density">Density<br><span style="font-weight:400;text-transform:none;letter-spacing:0">per sq mi</span></th>
+                <th data-col="area_sqmi">Area<br><span style="font-weight:400;text-transform:none;letter-spacing:0">sq mi</span></th>
               </tr>
             </thead>
             <tbody id="stats-tbody"></tbody>
@@ -1017,8 +1017,8 @@ function buildMap() {
 
 function buildTooltipHTML(props) {
   const pop = props.population ? props.population.toLocaleString() : 'N/A';
-  const density = props.density ? props.density.toLocaleString() + '/mi²' : 'N/A';
-  const area = props.area_sqmi ? props.area_sqmi + ' mi²' : 'N/A';
+  const density = props.density ? props.density.toLocaleString() + ' per sq mi' : 'N/A';
+  const area = props.area_sqmi ? props.area_sqmi + ' sq mi' : 'N/A';
   return `
     <div class="tooltip-name">${props.name}</div>
     <div class="tooltip-stats">
@@ -1092,7 +1092,7 @@ function showDetail(props) {
       </div>
       <div class="stat-card">
         <div class="stat-value">${density}</div>
-        <div class="stat-label">People per mi²</div>
+        <div class="stat-label">People per sq mi</div>
       </div>
       <div class="stat-card">
         <div class="stat-value">${area}</div>
@@ -1241,7 +1241,7 @@ function getLegendHTML() {
     ? ['0','1K','2.5K','5K','7.5K','10K','12.5K+']
     : ['0','500','1.5K','3K','5K','8K','12K+'];
 
-  return `<div class="legend-title">${colorMode === 'density' ? 'Pop / mi²' : 'Population'}</div>
+  return `<div class="legend-title">${colorMode === 'density' ? 'People per sq mi' : 'Population'}</div>
   <div class="legend-scale">
     ${colors.map((c, i) => `
       <div class="legend-item">
